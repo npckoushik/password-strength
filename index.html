@@ -1,0 +1,89 @@
+<html>
+<head>
+    <title>Password strength</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .container {
+            width: 100%;
+            height: 100vh;
+            background-color: hsl(0, 0%, 15%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            display: flex;
+            flex-direction: column;
+        }
+        #input-container {
+            width: 400px;
+            border: 3px solid white;
+            padding: 3px;
+            border-radius: 5px;
+        }
+        #input-container input {
+            width: 100%;
+            height: 50px;
+            background-color: hsl(0, 0%, 70%);
+            padding: 10px;
+            font-size: 1.3rem;
+            outline: none;
+            border-radius: 5px;
+        }
+        .container .message-container {
+            text-align: left;
+            width: 400px;
+            color: hsl(0, 0%, 70%);
+            padding: 7px 0 0 7px;
+            font-size: 1.2rem;
+        }
+        .container .message-container p {
+            display: none;
+            /* color: #8df368; */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="input-container">
+            <input type="password" id="password" placeholder="Password">
+            <!-- <button></button> -->
+        </div>
+        <div class="message-container">
+            <p id="message">Password is <span id="strength"></span></p>
+        </div>
+    </div>
+    <script>
+        var pass = document.getElementById("password");
+        var msg = document.getElementById("message");
+        var str = document.getElementById("strength");
+        var inpContainer = document.getElementById("input-container");
+        pass.addEventListener('input', () => {
+            if (pass.value.length > 0) {
+                msg.style.display = "block";
+            } else {
+                msg.style.display = "none";
+            }
+            if (pass.value.length < 4) {
+                str.innerHTML = "Weak";
+                str.style.color = "#f36868";
+                inpContainer.style.borderColor = "#f36868";
+            } else if (pass.value.length >= 4 && pass.value.length < 8) {
+                str.innerHTML = "Medium";
+                str.style.color = "#f3b468";
+                inpContainer.style.borderColor = "#f3b468";
+            } else {
+                str.innerHTML = "Strong";
+                str.style.color = "#8df368";
+                inpContainer.style.borderColor = "#8df368";
+            }
+        })
+    </script>
+</body>
+</html>
+
+<!-- < 4 characters - Weak
+>= 4 but < 8 - meadium
+>= 8 - Strong -->
